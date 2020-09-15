@@ -35,16 +35,22 @@ namespace ayy
 
         private void Triangulate(HexCell cell)
         {
-
+            Vector3 center = cell.transform.localPosition;
+            for(int i = 0;i < 6;i++)
+            {
+                AddTriangle(center,center + HexMetrics.corners[i],center + HexMetrics.corners[i + 1]);
+            }
         }
 
         private void AddTriangle(Vector3 v1,Vector3 v2,Vector3 v3)
         {
             int vertexIndex = _verices.Count;
             _verices.Add(v1);
-            _verices.Add(v1);
+            _verices.Add(v2);
             _verices.Add(v3);
-
+            _triangles.Add(vertexIndex);
+            _triangles.Add(vertexIndex + 1);
+            _triangles.Add(vertexIndex + 2);
         }
     }
 
